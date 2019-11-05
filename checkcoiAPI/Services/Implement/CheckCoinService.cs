@@ -46,5 +46,35 @@ namespace checkcoiAPI.Services.Implement
             }
 
         }
+
+        public async Task<object> CheckCoinInWallet2(List<string> lstWallet, string contractTK)
+        {
+            try
+            {
+                var apiLink = config.GetSection("tokenbalanceAPI").Value;
+                var lstWalletBalance = new List<WalletBalance>();
+
+                foreach (var item in lstWallet)
+                {
+                    var obj = new WalletBalance();
+                    obj.WalletAddress = item;
+                    var objRs = await GetVLAsync<decimal>(new Uri(apiLink + contractTK + "/" + item));
+                    obj.WalletBl = objRs.ToString();
+
+                    lstWalletBalance.Add(obj);
+                }
+
+                return new
+                {
+                    List = lstWalletBalance
+                };
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+        }
     }
 }

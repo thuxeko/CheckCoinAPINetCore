@@ -8,5 +8,6 @@ namespace checkcoiAPI.Services.Interface
     public interface ICheckCoinService
     {
         Task<object> CheckCoinInWallet(List<string> lstWallet, string contractTK, int contractDecimal);
+        Task<object> CheckCoinInWallet2(List<string> lstWallet, string contractTK);
     }
 }

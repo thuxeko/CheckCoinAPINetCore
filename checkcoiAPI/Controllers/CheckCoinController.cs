@@ -26,5 +26,15 @@ namespace checkcoiAPI.Controllers
                 Result = lstCheck
             });
         }
+        [HttpPost]
+        [Route("api/checktoken2")]
+        public IActionResult CheckCoinWithAPITokenBalance([FromBody] List<string> lstWallet, string contractTK)
+        {
+            var lstCheck = _CheckCoinService.CheckCoinInWallet2(lstWallet, contractTK);
+            return Json(new ActionResultDto
+            {
+                Result = lstCheck
+            });
+        }
     }
 }
